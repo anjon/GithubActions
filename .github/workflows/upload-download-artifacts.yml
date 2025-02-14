@@ -20,3 +20,16 @@ jobs:
         with:
           name: sample-file
           path: sample.txt
+
+  download-and-show:
+    runs-on: ubuntu-latest
+    needs: upload-artifacts
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: sample-file
+          path: ./downloaded-artifact
+
+      - name: Display file content
+        run: cat ./downloaded-artifact/sample.txt
