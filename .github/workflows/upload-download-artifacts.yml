@@ -1,0 +1,22 @@
+name: Upload and Download Artifacts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create a sample file
+        run: echo "Hello World!" > sample.txt
+
+      - name: upload file as artifacts
+        uses: actions/upload-artifacts@v4
+        with:
+          name: sample-file
+          path: sample.txt
